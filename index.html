@@ -460,6 +460,7 @@
                 <li><a href="#services" class="nav-link">Υπηρεσίες</a></li>
                 <li><a href="#pricing" class="nav-link">Κοστολόγηση</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="projects.html" class="nav-link">Δείγματα</a></li>
                 <li><a href="#contact" class="nav-link">Επικοινωνία</a></li>
             </ul>
             <div class="mobile-toggle" id="mobileToggle">
@@ -485,7 +486,7 @@
                 <a href="#contact" class="btn btn-primary">
                     <i class="fas fa-bolt"></i> Ζήτα Προσφορά
                 </a>
-                <a href="#projects" class="btn btn-outline">
+                <a href="projects.html" class="btn btn-outline">
                     <i class="fas fa-folder-open"></i> Δείγματα Δουλειάς
                 </a>
             </div>
@@ -521,6 +522,8 @@
                     <ul class="feature-list">
                         <li><i class="fas fa-check"></i> Custom PC Building</li>
                         <li><i class="fas fa-check"></i> Διάγνωση Hardware</li>
+                        <li><i class="fas fa-check"></i> Laptop Upgrades (RAM / SSD)</li>
+                        <li><i class="fas fa-check"></i> Laptop & PC Cleaning / Συντήρηση</li>
                         <li><i class="fas fa-check"></i> Thermal Optimization</li>
                         <li><i class="fas fa-check"></i> BIOS & Driver Tuning</li>
                     </ul>
@@ -535,8 +538,8 @@
                     <ul class="feature-list">
                         <li><i class="fas fa-check"></i> Rapid Prototyping</li>
                         <li><i class="fas fa-check"></i> Functional Parts</li>
-                        <li><i class="fas fa-check"></i> PLA / PETG / TPU</li>
-                        <li><i class="fas fa-check"></i> 3D CAD Σχεδίαση</li>
+                        <li><i class="fas fa-check"></i> PLA / TPU</li>
+                        <li><i class="fas fa-check"></i> 3D Modeling (STL/STEP) & Προετοιμασία για εκτύπωση</li>
                     </ul>
                 </div>
 
@@ -547,7 +550,8 @@
                     <h3>Laser Engraving</h3>
                     <p>Χάραξη ακριβείας για προσωποποιημένα δώρα, επαγγελματική σήμανση και custom projects.</p>
                     <ul class="feature-list">
-                        <li><i class="fas fa-check"></i> Χάραξη σε ξύλο & δέρμα</li>
+                        <li><i class="fas fa-check"></i> Χάραξη σε ξύλο / ακρυλικό</li>
+                        <li><i class="fas fa-check"></i> Κοπές (cutting) σε επιλεγμένα υλικά</li>
                         <li><i class="fas fa-check"></i> Επαγγελματική σήμανση</li>
                         <li><i class="fas fa-check"></i> Custom Branding</li>
                     </ul>
@@ -623,6 +627,9 @@
                         <div class="price-row"><span>Gaming / Watercooling</span><span>60-80€</span></div>
                         <div class="price-row"><span>Format & Drivers</span><span>25€</span></div>
                         <div class="price-row"><span>Cleaning/Maintenance</span><span>20€</span></div>
+                        <div class="price-row"><span>Laptop RAM Upgrade</span><span>15-25€</span></div>
+                        <div class="price-row"><span>Laptop SSD Upgrade</span><span>20-30€</span></div>
+                        <div class="price-row"><span>Laptop Cleaning</span><span>25€</span></div>
                     </div>
                 </div>
 
@@ -634,8 +641,9 @@
                     </div>
                     <div class="price-body">
                         <div class="price-row"><span>Setup Fee</span><span>Δωρεάν</span></div>
-                        <div class="price-row"><span>Printing Hour</span><span>~2-4€</span></div>
-                        <div class="price-row"><span>3D Modeling</span><span>15€ / ώρα</span></div>
+                        <div class="price-row"><span>Εκτύπωση (PLA/TPU)</span><span>0,20€ / g</span></div>
+                        <div class="price-row"><span>Minimum (ελάχιστη χρέωση)</span><span>5€</span></div>
+                        <div class="price-row"><span>3D Modeling</span><span>30€ / ώρα</span></div>
                         <div class="price-row"><span>Post-Processing</span><span>Κατόπιν συνενν.</span></div>
                     </div>
                 </div>
@@ -658,6 +666,9 @@
             <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">
                 * Οι τελικές τιμές ενδέχεται να διαφέρουν ανάλογα με την πολυπλοκότητα του project.
             </p>
+            <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                * Ειδικές τιμές για φοιτητές κατόπιν επιβεβαίωσης (student discount).
+            </p>
         </div>
     </section>
 
@@ -674,7 +685,7 @@
                         <i class="fab fa-whatsapp"></i>
                         <span>WhatsApp</span>
                     </a>
-                    <a href="viber://chat?number=%2B306937055755" class="contact-btn viber-btn">
+                    <a href="https://www.viber.com/en/download/" target="_blank" rel="noopener" class="contact-btn viber-btn" data-viber-number="+306937055755">
                         <i class="fab fa-viber"></i>
                         <span>Viber</span>
                     </a>
@@ -761,7 +772,27 @@
                 nav.style.background = "rgba(255, 255, 255, 0.8)";
             }
         });
+
+        // Viber deep-link with safe fallback
+        // Behavior:
+        // - Try to open the Viber app via viber://
+        // - If the app isn't installed / deep-link blocked, keep the user on a safe web page (download)
+        const viberBtn = document.querySelector('.viber-btn[data-viber-number]');
+        if (viberBtn) {
+            viberBtn.addEventListener('click', (e) => {
+                const number = viberBtn.getAttribute('data-viber-number');
+                if (!number) return;
+
+                const deepLink = `viber://chat?number=${encodeURIComponent(number)}`;
+
+                // We intentionally do NOT prevent default. Default goes to the safe https fallback.
+                // We try to switch to the app immediately; if it works, the browser navigation is typically canceled.
+                // If it doesn't, the user lands on the fallback page with no error.
+                window.location.href = deepLink;
+            });
+        }
     </script>
 </body>
 </html>
+
 
