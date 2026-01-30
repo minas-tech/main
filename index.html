@@ -612,7 +612,7 @@
         <div class="container">
             <div style="text-align: center; margin-bottom: 4rem;">
                 <h2 style="font-size: 2.5rem;">Ενδεικτική Κοστολόγηση</h2>
-                <p style="color: var(--text-muted);">Διαφάνεια στις χρεώσεις. Ειδικές τιμές για φοιτητές.</p>
+                <p style="color: var(--text-muted);">Διαφάνεια στις χρεώσεις.</p>
             </div>
 
             <div class="pricing-table">
@@ -666,9 +666,6 @@
             <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">
                 * Οι τελικές τιμές ενδέχεται να διαφέρουν ανάλογα με την πολυπλοκότητα του project.
             </p>
-            <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">
-                * Ειδικές τιμές για φοιτητές κατόπιν επιβεβαίωσης (student discount).
-            </p>
         </div>
     </section>
 
@@ -685,7 +682,7 @@
                         <i class="fab fa-whatsapp"></i>
                         <span>WhatsApp</span>
                     </a>
-                    <a href="https://www.viber.com/en/download/" target="_blank" rel="noopener" class="contact-btn viber-btn" data-viber-number="+306937055755">
+                    <a href="https://www.viber.com/en/download/" target="_blank" rel="noopener" class="contact-btn viber-btn" data-viber-number="+306937055755" data-fallback="https://www.viber.com/en/download/">
                         <i class="fab fa-viber"></i>
                         <span>Viber</span>
                     </a>
@@ -780,15 +777,37 @@
         const viberBtn = document.querySelector('.viber-btn[data-viber-number]');
         if (viberBtn) {
             viberBtn.addEventListener('click', (e) => {
+                // Prevent immediate navigation to a browser URL that may show "requested page unavailable".
+                // We'll attempt the app deep-link first, then fall back to a safe page.
+                e.preventDefault();
+
                 const number = viberBtn.getAttribute('data-viber-number');
                 if (!number) return;
 
                 const deepLink = `viber://chat?number=${encodeURIComponent(number)}`;
 
-                // We intentionally do NOT prevent default. Default goes to the safe https fallback.
-                // We try to switch to the app immediately; if it works, the browser navigation is typically canceled.
-                // If it doesn't, the user lands on the fallback page with no error.
+                const fallbackUrl = viberBtn.getAttribute('data-fallback') || 'https://www.viber.com/en/download/';
+
+                // Heuristic: if the app opens, the page typically becomes hidden quickly.
+                // If it doesn't, we redirect to the fallback after a short delay.
+                let didOpenApp = false;
+                const onVisibilityChange = () => {
+                    if (document.visibilityState === 'hidden') {
+                        didOpenApp = true;
+                    }
+                };
+
+                document.addEventListener('visibilitychange', onVisibilityChange, { once: true });
+
+                // Try to open the app
                 window.location.href = deepLink;
+
+                // Fallback (keeps UX clean; no broken pages)
+                window.setTimeout(() => {
+                    if (!didOpenApp) {
+                        window.location.href = fallbackUrl;
+                    }
+                }, 900);
             });
         }
     </script>
