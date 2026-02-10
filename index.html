@@ -1096,6 +1096,16 @@
             }
         }
 
+        function formatSupabaseError(err) {
+            if (!err) return '';
+            const parts = [];
+            if (err.code) parts.push(`code: ${err.code}`);
+            if (err.message) parts.push(err.message);
+            if (err.hint) parts.push(`hint: ${err.hint}`);
+            if (err.details) parts.push(`details: ${err.details}`);
+            return parts.join(' | ');
+        }
+
         async function loadSupabaseScript() {
             return new Promise((resolve, reject) => {
                 const existing = document.querySelector('script[data-supabase]');
@@ -1132,7 +1142,8 @@
                     .limit(24);
 
                 if (error) {
-                    setReviewsNotice('Δεν ήταν δυνατή η φόρτωση κριτικών αυτή τη στιγμή.');
+                    console.error('Supabase select error:', error);
+                    setReviewsNotice(`Δεν ήταν δυνατή η φόρτωση κριτικών αυτή τη στιγμή. ${formatSupabaseError(error)}`);
                     renderReviews([]);
                 } else {
                     setReviewsNotice('');
@@ -1170,7 +1181,8 @@
                             .insert([{ name, email, rating, comment }]);
 
                         if (insertError) {
-                            if (reviewFormMsg) reviewFormMsg.textContent = 'Δεν έγινε η υποβολή. Δοκίμασε ξανά σε λίγο.';
+                            console.error('Supabase insert error:', insertError);
+                            if (reviewFormMsg) reviewFormMsg.textContent = `Δεν έγινε η υποβολή. ${formatSupabaseError(insertError)}`;
                             if (reviewSubmitBtn) reviewSubmitBtn.disabled = false;
                             return;
                         }
