@@ -3,40 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MinasTech | Δείγματα Δουλειάς</title>
-    <meta name="description" content="MinasTech — Δείγματα δουλειάς από επισκευές, PC builds, 3D εκτυπώσεις και laser εργασίες.">
+    <title>MinasTech | Precision Engineering & IT Solutions</title>
+    <meta name="description" content="MinasTech — Εξειδικευμένες υπηρεσίες υπολογιστών, 3D printing και laser engraving. Λύσεις μηχανικού ΕΜΠ για hardware, troubleshooting και custom κατασκευές.">
     <meta name="theme-color" content="#0f172a">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="el_GR">
-    <meta property="og:title" content="MinasTech | Δείγματα Δουλειάς">
-    <meta property="og:description" content="Portfolio από PC builds, 3D printing και laser εργασίες.">
-
+    <meta property="og:title" content="MinasTech | Precision Engineering Services">
+    <meta property="og:description" content="High-end PC Assembly • 3D Printing • Laser Engraving.">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
+        /* --- Reset & Variables --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
+            /* Palette: Modern Tech Slate */
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
-            --primary: #2563eb;
+            --primary: #2563eb; /* Electric Blue */
             --primary-dark: #1d4ed8;
-            --accent: #06b6d4;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
+            --accent: #06b6d4; /* Cyan accent */
+            --text-main: #0f172a; /* Slate 900 */
+            --text-muted: #64748b; /* Slate 500 */
             --border: #e2e8f0;
-
+            
+            /* Gradients */
             --gradient-primary: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+            --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+
+            /* Effects */
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.15);
             --radius: 16px;
         }
 
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-body);
@@ -46,13 +55,14 @@
         }
 
         h1, h2, h3, h4 {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Space Grotesk', sans-serif; /* More technical heading font */
             letter-spacing: -0.03em;
             line-height: 1.2;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
-
+        
+        /* --- Layout Utilities --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -61,6 +71,56 @@
 
         .section-padding { padding: 6rem 0; }
 
+        /* --- Components --- */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary {
+            background: var(--text-main);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: var(--primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-outline {
+            background: white;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+            background: #f1f5f9;
+        }
+
+        /* --- Header / Nav --- */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -87,14 +147,13 @@
             align-items: center;
             gap: 0.5rem;
         }
-
+        
         .logo i { color: var(--primary); }
 
         .nav-menu {
             display: flex;
             gap: 2.5rem;
             list-style: none;
-            align-items: center;
         }
 
         .nav-link {
@@ -105,7 +164,7 @@
         }
 
         .nav-link:hover, .nav-link.active { color: var(--text-main); }
-
+        
         .nav-link::after {
             content: '';
             position: absolute;
@@ -113,57 +172,33 @@
             background: var(--primary);
             transition: 0.3s;
         }
-
+        
         .nav-link:hover::after { width: 100%; }
 
         .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
 
-        .btn {
-            display: inline-flex;
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            padding: 0.9rem 1.2rem;
-            font-weight: 600;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background: white;
-        }
-
-        .btn:hover {
-            border-color: var(--text-main);
-            background: #f1f5f9;
-            transform: translateY(-1px);
-        }
-
-        .header {
-            padding-top: 80px;
             background: radial-gradient(circle at 10% 20%, rgba(37,99,235,0.05) 0%, transparent 40%),
                         radial-gradient(circle at 90% 80%, rgba(6,182,212,0.05) 0%, transparent 40%);
+            padding-top: 80px;
         }
 
-        .page-hero {
-            padding: 4.5rem 0 2.5rem;
+        .hero-content {
             text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--primary);
-            border-radius: 100px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(37, 99, 235, 0.2);
-        }
-
-        .page-hero h1 {
-            font-size: clamp(2.25rem, 4vw, 3.25rem);
-            margin-bottom: 1rem;
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
         }
 
         .text-gradient {
@@ -173,79 +208,352 @@
             background-clip: text;
         }
 
-        .page-hero p {
+        .hero p {
+            font-size: 1.25rem;
             color: var(--text-muted);
-            max-width: 760px;
-            margin: 0.75rem auto 0;
-            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .projects-grid {
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-item strong { display: block; font-size: 2rem; color: var(--text-main); line-height: 1; }
+        .stat-item span { font-size: 0.9rem; color: var(--text-muted); }
+
+        /* --- Services --- */
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 1.25rem;
-            padding-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        .project-card {
-            grid-column: span 6;
+        .card {
+            background: var(--bg-surface);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+
+        .icon-box {
+            width: 60px; height: 60px;
+            background: #eff6ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .card p { color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
+
+        .feature-list { list-style: none; }
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+        .feature-list i { color: var(--primary); margin-top: 4px; }
+
+        /* --- About Section (Rebranded) --- */
+        .about-section { background: var(--text-main); color: white; position: relative; overflow: hidden; }
+        
+        /* Abstract Tech Pattern */
+        .about-section::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.5;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative; z-index: 2;
+        }
+
+        .about-content h2 { margin-bottom: 1.5rem; font-size: 2.5rem; }
+        .about-content p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .highlight { color: var(--accent); font-weight: 600; }
+
+        .about-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tech-tag {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* --- Pricing Table --- */
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .price-card {
             background: var(--bg-surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             overflow: hidden;
             transition: 0.3s;
+        }
+        
+        .price-card:hover { border-color: var(--primary); box-shadow: var(--shadow-md); }
+
+        .price-header {
+            padding: 2rem;
+            background: #f8fafc;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .price-header h3 { font-size: 1.25rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 0.5rem; }
+        .price-header .price-display { font-size: 2rem; font-weight: 700; color: var(--text-main); }
+        .price-header .price-sub { font-size: 0.875rem; color: var(--text-muted); font-weight: 400; }
+
+        .price-body { padding: 2rem; }
+        .price-row { display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.95rem; border-bottom: 1px dashed var(--border); padding-bottom: 0.5rem; }
+        .price-row:last-child { border-bottom: none; }
+        .price-row span:last-child { font-weight: 600; color: var(--text-main); }
+
+        /* --- Reviews (On-site) --- */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .reviews-panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
             box-shadow: var(--shadow-sm);
         }
 
-        .project-card:hover {
-            border-color: rgba(37, 99, 235, 0.35);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
+        .reviews-notice {
+            margin: 0 0 1rem;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
-        .project-card img {
-            width: 100%;
-            height: 260px;
-            object-fit: cover;
-            display: block;
-            background: #e2e8f0;
-        }
-
-        .project-card figcaption {
-            padding: 1rem 1.1rem 1.15rem;
+        .reviews-list {
             display: grid;
-            gap: 0.25rem;
+            gap: 1rem;
         }
 
-        .project-card figcaption strong { font-weight: 700; }
+        .review-card {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1rem 1rem 1.1rem;
+            background: #ffffff;
+        }
 
-        .project-card figcaption span {
+        .review-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: baseline;
+            margin-bottom: 0.35rem;
+            flex-wrap: wrap;
+        }
+
+        .review-name {
+            font-weight: 700;
+        }
+
+        .review-date {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        .hint {
+        .review-stars {
+            color: #f59e0b;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+
+        .review-text {
+            color: var(--text-main);
+            margin-top: 0.5rem;
+            white-space: pre-wrap;
+        }
+
+        .review-skeleton {
+            height: 88px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: linear-gradient(90deg, #f1f5f9 0%, #ffffff 50%, #f1f5f9 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .review-form {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .form-row {
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .form-row label {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .form-row input,
+        .form-row select,
+        .form-row textarea {
+            width: 100%;
+            padding: 0.85rem 0.9rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            outline: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #ffffff;
+        }
+
+        .form-row textarea { resize: vertical; }
+
+        .form-row input:focus,
+        .form-row select:focus,
+        .form-row textarea:focus {
+            border-color: rgba(37, 99, 235, 0.6);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        /* --- Contact --- */
+        .contact-wrapper {
+            background: var(--bg-surface);
+            border-radius: 24px;
+            padding: 4rem 2rem;
             text-align: center;
-            margin-top: 0.75rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 140px;
+            padding: 1.5rem;
+            border-radius: 16px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: white;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+
+        .contact-btn i { font-size: 2rem; margin-bottom: 1rem; color: var(--text-main); }
+        .contact-btn span { font-weight: 600; font-size: 0.9rem; }
+        
+        .whatsapp-btn i { color: #25D366; }
+        .viber-btn i { color: #7360F2; }
+        .email-btn i { color: var(--primary); }
+
+        /* --- Footer --- */
         footer {
             background: var(--text-main);
             color: #94a3b8;
-            padding: 3rem 0 2rem;
+            padding: 4rem 0 2rem;
             border-top: 1px solid #1e293b;
         }
-
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand { color: white; font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; display: block; font-family: 'Space Grotesk'; }
+        .footer-col h4 { color: white; margin-bottom: 1.5rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.75rem; }
+        .footer-col a:hover { color: var(--primary); }
+        
         .copyright {
             text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #1e293b;
             font-size: 0.875rem;
         }
 
+        /* --- Mobile --- */
         @media (max-width: 768px) {
-            .mobile-toggle { display: block; }
+            .hero h1 { font-size: 2.25rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .hero-stats { flex-direction: column; gap: 1.5rem; }
 
+            .reviews-grid { grid-template-columns: 1fr; }
+            
+            .mobile-toggle { display: block; }
             .nav-menu {
                 position: fixed;
                 top: 80px; left: 0; right: 0;
@@ -258,10 +566,7 @@
                 transition: transform 0.3s ease;
                 z-index: 999;
             }
-
             .nav-menu.active { transform: translateY(0); box-shadow: var(--shadow-lg); }
-
-            .project-card { grid-column: span 12; }
         }
     </style>
 </head>
@@ -269,16 +574,16 @@
 
     <nav>
         <div class="container nav-inner">
-            <a href="index.html" class="logo">
+            <a href="#" class="logo">
                 <i class="fas fa-layer-group"></i> MinasTech
             </a>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html#services" class="nav-link">Υπηρεσίες</a></li>
-                <li><a href="index.html#pricing" class="nav-link">Κοστολόγηση</a></li>
-                <li><a href="index.html#reviews" class="nav-link">Κριτικές</a></li>
-                <li><a href="index.html#about" class="nav-link">About</a></li>
-                <li><a href="projects.html" class="btn"><i class="fas fa-folder-open"></i> Δείγματα</a></li>
-                <li><a href="index.html#contact" class="nav-link">Επικοινωνία</a></li>
+                <li><a href="#services" class="nav-link">Υπηρεσίες</a></li>
+                <li><a href="#pricing" class="nav-link">Κοστολόγηση</a></li>
+                <li><a href="#reviews" class="nav-link">Κριτικές</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="projects.html" class="nav-link">Δείγματα</a></li>
+                <li><a href="#contact" class="nav-link">Επικοινωνία</a></li>
             </ul>
             <div class="mobile-toggle" id="mobileToggle">
                 <i class="fas fa-bars"></i>
@@ -286,61 +591,349 @@
         </div>
     </nav>
 
-    <header class="header">
-        <div class="container page-hero">
-            <div class="badge"><i class="fas fa-folder-open"></i> Portfolio</div>
-            <h1>Δείγματα <span class="text-gradient">Δουλειάς</span></h1>
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="badge">
+                <i class="fas fa-check-circle"></i> Engineering Grade Solutions
+            </div>
+            <h1>
+                Τεχνική Ακρίβεια σε<br>
+                <span class="text-gradient">Hardware & 3D Printing</span>
+            </h1>
             <p>
-                Φωτογραφίες από builds, επισκευές, 3D εκτυπώσεις και laser εργασίες.
-                Για να εμφανιστούν εδώ, πρόσθεσε εικόνες στον φάκελο <strong>photos</strong>.
+                Ολοκληρωμένες λύσεις υπολογιστών και κατασκευές ακριβείας. 
+                Συνδυάζοντας τη μηχανική γνώση του ΕΜΠ με το πάθος για το hardware.
             </p>
-        </div>
-    </header>
-
-    <main class="section-padding" aria-label="Portfolio projects">
-        <div class="container">
-            <div class="projects-grid">
-                <figure class="project-card">
-                    <img src="photos/sample-1.jpg" alt="Δείγμα έργου 1" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                    <figcaption>
-                        <strong>PC Build</strong>
-                        <span>Συναρμολόγηση & cable management</span>
-                    </figcaption>
-                </figure>
-
-                <figure class="project-card">
-                    <img src="photos/sample-2.jpg" alt="Δείγμα έργου 2" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                    <figcaption>
-                        <strong>3D Printed Part</strong>
-                        <span>Λειτουργικό εξάρτημα / prototype</span>
-                    </figcaption>
-                </figure>
-
-                <figure class="project-card">
-                    <img src="photos/sample-3.jpg" alt="Δείγμα έργου 3" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                    <figcaption>
-                        <strong>Laser Engraving</strong>
-                        <span>Χάραξη ή κοπή σε υλικό</span>
-                    </figcaption>
-                </figure>
-
-                <figure class="project-card">
-                    <img src="photos/sample-4.jpg" alt="Δείγμα έργου 4" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                    <figcaption>
-                        <strong>Laptop Upgrade</strong>
-                        <span>RAM/SSD + καθαρισμός</span>
-                    </figcaption>
-                </figure>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-bolt"></i> Ζήτα Προσφορά
+                </a>
+                <a href="projects.html" class="btn btn-outline">
+                    <i class="fas fa-folder-open"></i> Δείγματα Δουλειάς
+                </a>
             </div>
 
-            <p class="hint">
-                Tip: Αν θες, ονόμασέ τες <code>sample-1.jpg</code>, <code>sample-2.jpg</code> κ.ο.κ.
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <strong>100+</strong> <span>Επισκευές & Builds</span>
+                </div>
+                <div class="stat-item">
+                    <strong>500h+</strong> <span>3D Printing Time</span>
+                </div>
+                <div class="stat-item">
+                    <strong>100%</strong> <span>Attention to Detail</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="services">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Υπηρεσίες</h2>
+                <p style="color: var(--text-muted);">Professional-grade υποστήριξη για ιδιώτες και επαγγελματίες</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="card">
+                    <div class="icon-box">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>PC Systems & Hardware</h3>
+                    <p>Συναρμολόγηση με έμφαση στο cable management, την ψύξη και τη σταθερότητα. Από workstation μηχανικών μέχρι gaming setups.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Custom PC Building</li>
+                        <li><i class="fas fa-check"></i> Διάγνωση Hardware</li>
+                        <li><i class="fas fa-check"></i> Laptop Upgrades (RAM / SSD)</li>
+                        <li><i class="fas fa-check"></i> Laptop & PC Cleaning / Συντήρηση</li>
+                        <li><i class="fas fa-check"></i> Thermal Optimization</li>
+                        <li><i class="fas fa-check"></i> BIOS & Driver Tuning</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>3D Printing & Prototyping</h3>
+                    <p>Μετατροπή ψηφιακών μοντέλων σε φυσικά αντικείμενα. Χρήση υλικών υψηλής ποιότητας για αντοχή και ακρίβεια.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Rapid Prototyping</li>
+                        <li><i class="fas fa-check"></i> Functional Parts</li>
+                        <li><i class="fas fa-check"></i> PLA / TPU</li>
+                        <li><i class="fas fa-check"></i> 3D Modeling (STL/STEP) & Προετοιμασία για εκτύπωση</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h3>Laser Engraving</h3>
+                    <p>Χάραξη ακριβείας για προσωποποιημένα δώρα, επαγγελματική σήμανση και custom projects.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Χάραξη σε ξύλο / ακρυλικό</li>
+                        <li><i class="fas fa-check"></i> Κοπές (cutting) σε επιλεγμένα υλικά</li>
+                        <li><i class="fas fa-check"></i> Επαγγελματική σήμανση</li>
+                        <li><i class="fas fa-check"></i> Custom Branding</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding about-section" id="about">
+        <div class="container about-grid">
+            <div class="about-content">
+                <div class="badge" style="background: rgba(255,255,255,0.15); color: white; border: none;">
+                    About MinasTech
+                </div>
+                <h2>Μηχανική Προσέγγιση,<br>Όχι απλά "Service"</h2>
+                <p>
+                    Είμαι φοιτητής <span class="highlight">Ηλεκτρολόγων Μηχανικών & Μηχανικών Υπολογιστών στο ΕΜΠ</span> και προσφέρω υπηρεσίες που συνδυάζουν
+                    <strong>τεχνική ακρίβεια</strong>, <strong>μεθοδικότητα</strong> και <strong>σεβασμό στον χρόνο και το budget</strong>.
+                </p>
+                <p>
+                    Στο MinasTech δεν κάνω απλά "γρήγορες λύσεις". Βλέπω κάθε εργασία σαν mini project: ανάλυση προβλήματος, σωστό πλάνο, καθαρή υλοποίηση και έλεγχος.
+                    Είτε μιλάμε για ένα gaming PC, είτε για επισκευή laptop, είτε για 3D printing, ο στόχος είναι ένα: <strong>αξιόπιστο αποτέλεσμα που κρατάει</strong>.
+                </p>
+                <ul class="feature-list" style="margin-top: 1.25rem;">
+                    <li><i class="fas fa-check"></i> Διάγνωση & troubleshooting με τεκμηρίωση</li>
+                    <li><i class="fas fa-check"></i> Καθαρή συναρμολόγηση / cable management</li>
+                    <li><i class="fas fa-check"></i> Θερμική συμπεριφορά (temps / airflow) και βελτιστοποίηση</li>
+                    <li><i class="fas fa-check"></i> 3D modeling & προετοιμασία για εκτύπωση (STL/STEP)</li>
+                </ul>
+                <div class="about-badges">
+                    <span class="tech-tag">CAD Design</span>
+                    <span class="tech-tag">Hardware Engineering</span>
+                    <span class="tech-tag">Thermal Dynamics</span>
+                    <span class="tech-tag">Precision Mfg</span>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <div style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 400px;">
+                    <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                        <i class="fas fa-university fa-2x" style="color: var(--accent);"></i>
+                        <div>
+                            <h4 style="margin:0;">NTUA Student</h4>
+                            <small style="opacity: 0.7;">School of ECE</small>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                        <i class="fas fa-tools fa-2x" style="color: var(--accent);"></i>
+                        <div>
+                            <h4 style="margin:0;">Lab Equipment</h4>
+                            <small style="opacity: 0.7;">High Precision Tools</small>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <i class="fas fa-brain fa-2x" style="color: var(--accent);"></i>
+                        <div>
+                            <h4 style="margin:0;">Problem Solving</h4>
+                            <small style="opacity: 0.7;">Analytical Methodology</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="pricing">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 2.5rem;">Ενδεικτική Κοστολόγηση</h2>
+                <p style="color: var(--text-muted);">Διαφάνεια στις χρεώσεις.</p>
+            </div>
+
+            <div class="pricing-table">
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3>PC Assembly</h3>
+                        <div class="price-display">40€</div>
+                        <div class="price-sub">Τιμή εκκίνησης</div>
+                    </div>
+                    <div class="price-body">
+                        <div class="price-row"><span>Basic Assembly</span><span>40€</span></div>
+                        <div class="price-row"><span>Gaming / Watercooling</span><span>60-80€</span></div>
+                        <div class="price-row"><span>Format & Drivers</span><span>25€</span></div>
+                        <div class="price-row"><span>Cleaning/Maintenance</span><span>20€</span></div>
+                        <div class="price-row"><span>Laptop RAM Upgrade</span><span>15-25€</span></div>
+                        <div class="price-row"><span>Laptop SSD Upgrade</span><span>20-30€</span></div>
+                        <div class="price-row"><span>Laptop Cleaning</span><span>25€</span></div>
+                    </div>
+                </div>
+
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3>3D Printing</h3>
+                        <div class="price-display">5€</div>
+                        <div class="price-sub">Minimum Order</div>
+                    </div>
+                    <div class="price-body">
+                        <div class="price-row"><span>Setup Fee</span><span>Δωρεάν</span></div>
+                        <div class="price-row"><span>Εκτύπωση (PLA/TPU)</span><span>0,20€ / g</span></div>
+                        <div class="price-row"><span>Minimum (ελάχιστη χρέωση)</span><span>5€</span></div>
+                        <div class="price-row"><span>3D Modeling</span><span>30€ / ώρα</span></div>
+                        <div class="price-row"><span>Post-Processing</span><span>Κατόπιν συνενν.</span></div>
+                    </div>
+                </div>
+
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3>Laser Engraving</h3>
+                        <div class="price-display">Custom</div>
+                        <div class="price-sub">Based on material</div>
+                    </div>
+                    <div class="price-body">
+                        <div class="price-row"><span>Small Object (Keychains)</span><span>5-8€</span></div>
+                        <div class="price-row"><span>Medium (Plaques)</span><span>15€+</span></div>
+                        <div class="price-row"><span>Custom Design</span><span>+10€</span></div>
+                        <div class="price-row"><span>Bulk Orders</span><span>-20%</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted);">
+                * Οι τελικές τιμές ενδέχεται να διαφέρουν ανάλογα με την πολυπλοκότητα του project.
             </p>
         </div>
-    </main>
+    </section>
+
+    <section class="section-padding" id="reviews" style="background: linear-gradient(to bottom, #ffffff, #f8fafc);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Κριτικές</h2>
+                <p style="color: var(--text-muted); max-width: 760px; margin: 0 auto;">
+                    Αφήστε την εμπειρία σας. Οι κριτικές εμφανίζονται στη σελίδα αφού εγκριθούν.
+                </p>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="reviews-panel">
+                    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom: 1rem;">
+                        <h3 style="font-size: 1.4rem;">Τι λένε οι πελάτες</h3>
+                        <span id="reviewsCount" style="color: var(--text-muted); font-size: 0.9rem;"></span>
+                    </div>
+
+                    <div id="reviewsNotice" class="reviews-notice" style="display:none;"></div>
+
+                    <div id="reviewsList" class="reviews-list" aria-label="Λίστα κριτικών">
+                        <div class="review-skeleton"></div>
+                        <div class="review-skeleton"></div>
+                        <div class="review-skeleton"></div>
+                    </div>
+                </div>
+
+                <div class="reviews-panel">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">Αφήστε κριτική</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.25rem;">
+                        Συμπληρώστε τα στοιχεία σας. Η κριτική θα εμφανιστεί μετά από έγκριση.
+                    </p>
+
+                    <form id="reviewForm" class="review-form" novalidate>
+                        <div class="form-row">
+                            <label for="reviewName">Ονοματεπώνυμο</label>
+                            <input id="reviewName" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="reviewEmail">Email</label>
+                            <input id="reviewEmail" name="email" type="email" autocomplete="email" maxlength="120" required>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="reviewRating">Βαθμολογία</label>
+                            <select id="reviewRating" name="rating" required>
+                                <option value="">Επιλέξτε…</option>
+                                <option value="5">★★★★★ (5)</option>
+                                <option value="4">★★★★☆ (4)</option>
+                                <option value="3">★★★☆☆ (3)</option>
+                                <option value="2">★★☆☆☆ (2)</option>
+                                <option value="1">★☆☆☆☆ (1)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="reviewComment">Κείμενο</label>
+                            <textarea id="reviewComment" name="comment" rows="4" minlength="5" maxlength="800" required placeholder="Π.χ. άμεση εξυπηρέτηση, προσεγμένη δουλειά…"></textarea>
+                        </div>
+
+                        <!-- Honeypot (anti-spam) -->
+                        <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+                            <label for="reviewWebsite">Website</label>
+                            <input id="reviewWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="reviewSubmitBtn" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-paper-plane"></i> Υποβολή κριτικής
+                        </button>
+
+                        <p id="reviewFormMsg" style="margin-top: 0.9rem; font-size: 0.9rem; color: var(--text-muted);"></p>
+                        <p style="margin-top: 0.6rem; font-size: 0.85rem; color: var(--text-muted);">
+                            Δεν δημοσιεύουμε το email. Χρησιμοποιείται μόνο για έλεγχο/επικοινωνία.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="contact" style="background: linear-gradient(to bottom, #f8fafc, #e2e8f0);">
+        <div class="container">
+            <div class="contact-wrapper">
+                <h2>Έτοιμοι να ξεκινήσουμε;</h2>
+                <p style="color: var(--text-muted); margin-top: 1rem;">
+                    Στείλτε μου τις προδιαγραφές του υπολογιστή σας ή το 3D αρχείο σας για άμεση εκτίμηση κόστους.
+                </p>
+
+                <div class="contact-methods">
+                    <a href="https://wa.me/306937055755" target="_blank" class="contact-btn whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="https://www.viber.com/en/download/" target="_blank" rel="noopener" class="contact-btn viber-btn" data-viber-number="+306937055755" data-fallback="https://www.viber.com/en/download/">
+                        <i class="fab fa-viber"></i>
+                        <span>Viber</span>
+                    </a>
+                    <a href="mailto:minas.techfix@gmail.com" class="contact-btn email-btn">
+                        <i class="far fa-envelope"></i>
+                        <span>Email</span>
+                    </a>
+                </div>
+
+                <div style="font-size: 0.9rem; color: var(--text-muted);">
+                    <i class="fas fa-phone-alt"></i> +30 693 705 5755 &nbsp;|&nbsp; <i class="fas fa-map-marker-alt"></i> Αθήνα, Αττική
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="footer-brand"><i class="fas fa-layer-group" style="color: var(--primary);"></i> MinasTech</a>
+                    <p style="font-size: 0.9rem; max-width: 250px;">
+                        Υπηρεσίες τεχνολογίας με την υπογραφή και την αξιοπιστία ενός μηχανικού του ΕΜΠ.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Υπηρεσίες</h4>
+                    <ul>
+                        <li><a href="#services">Συναρμολόγηση PC</a></li>
+                        <li><a href="#services">3D Εκτυπώσεις</a></li>
+                        <li><a href="#services">Laser Χαράξεις</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Σύνδεσμοι</h4>
+                    <ul>
+                        <li><a href="#pricing">Τιμοκατάλογος</a></li>
+                        <li><a href="#contact">Επικοινωνία</a></li>
+                        <li><a href="#about">Σχετικά με εμένα</a></li>
+                    </ul>
+                </div>
+            </div>
             <div class="copyright">
                 © 2026 MinasTech. Designed with precision.
             </div>
@@ -348,9 +941,14 @@
     </footer>
 
     <script>
+        // Supabase client (CDN)
+        // NOTE: This is loaded dynamically to keep the site build-free for GitHub Pages.
+        // You must set SUPABASE_URL and SUPABASE_ANON_KEY below.
+
         // Mobile Menu Toggle
         const toggleBtn = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
+        const navLinks = document.querySelectorAll('.nav-link');
 
         toggleBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
@@ -364,13 +962,12 @@
             }
         });
 
-        // Close menu on click
-        navMenu.querySelectorAll('a').forEach(link => {
+        // Close menu on link click
+        navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
-                const icon = toggleBtn.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                toggleBtn.querySelector('i').classList.remove('fa-times');
+                toggleBtn.querySelector('i').classList.add('fa-bars');
             });
         });
 
@@ -385,6 +982,286 @@
                 nav.style.background = "rgba(255, 255, 255, 0.8)";
             }
         });
+
+        // Viber deep-link with safe fallback
+        // Behavior:
+        // - Try to open the Viber app via viber://
+        // - If the app isn't installed / deep-link blocked, keep the user on a safe web page (download)
+        const viberBtn = document.querySelector('.viber-btn[data-viber-number]');
+        if (viberBtn) {
+            viberBtn.addEventListener('click', (e) => {
+                // Prevent immediate navigation to a browser URL that may show "requested page unavailable".
+                // We'll attempt the app deep-link first, then fall back to a safe page.
+                e.preventDefault();
+
+                const number = viberBtn.getAttribute('data-viber-number');
+                if (!number) return;
+
+                const deepLink = `viber://chat?number=${encodeURIComponent(number)}`;
+
+                const fallbackUrl = viberBtn.getAttribute('data-fallback') || 'https://www.viber.com/en/download/';
+
+                // Heuristic: if the app opens, the page typically becomes hidden quickly.
+                // If it doesn't, we redirect to the fallback after a short delay.
+                let didOpenApp = false;
+                const onVisibilityChange = () => {
+                    if (document.visibilityState === 'hidden') {
+                        didOpenApp = true;
+                    }
+                };
+
+                document.addEventListener('visibilitychange', onVisibilityChange, { once: true });
+
+                // Try to open the app
+                window.location.href = deepLink;
+
+                // Fallback (keeps UX clean; no broken pages)
+                window.setTimeout(() => {
+                    if (!didOpenApp) {
+                        window.location.href = fallbackUrl;
+                    }
+                }, 900);
+            });
+        }
+
+        // --- Reviews (Supabase) ---
+        // Configure these (see REVIEWS_SETUP_SUPABASE.md):
+    const SUPABASE_URL = 'https://rtmdzkiturgwvjayozqr.supabase.co'; // e.g. https://xxxx.supabase.co
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0bWR6a2l0dXJnd3ZqYXlvenFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA3NjI0OTcsImV4cCI6MjA4NjMzODQ5N30.2KORZylbhFHf2Kz5VguZEJrJ7S5UD_bce4S07icz1xWc'; // anon public key
+
+        const reviewsNotice = document.getElementById('reviewsNotice');
+        const reviewsList = document.getElementById('reviewsList');
+        const reviewsCount = document.getElementById('reviewsCount');
+        const reviewForm = document.getElementById('reviewForm');
+        const reviewFormMsg = document.getElementById('reviewFormMsg');
+        const reviewSubmitBtn = document.getElementById('reviewSubmitBtn');
+
+        function setReviewsNotice(message) {
+            if (!reviewsNotice) return;
+            if (!message) {
+                reviewsNotice.style.display = 'none';
+                reviewsNotice.textContent = '';
+                return;
+            }
+            reviewsNotice.style.display = 'block';
+            reviewsNotice.textContent = message;
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#039;');
+        }
+
+        function stars(rating) {
+            const r = Math.max(1, Math.min(5, Number(rating) || 0));
+            return '★★★★★'.slice(0, r) + '☆☆☆☆☆'.slice(0, 5 - r);
+        }
+
+        function formatDate(iso) {
+            try {
+                const d = new Date(iso);
+                return d.toLocaleDateString('el-GR', { year: 'numeric', month: 'short', day: '2-digit' });
+            } catch {
+                return '';
+            }
+        }
+
+        function renderReviews(items) {
+            if (!reviewsList) return;
+            reviewsList.innerHTML = '';
+
+            if (!items || items.length === 0) {
+                reviewsList.innerHTML = '<div class="review-card" style="color: var(--text-muted);">Δεν υπάρχουν ακόμα κριτικές. Γίνετε ο/η πρώτος/η!</div>';
+                if (reviewsCount) reviewsCount.textContent = '';
+                return;
+            }
+
+            if (reviewsCount) reviewsCount.textContent = `${items.length} κριτικές`;
+
+            for (const it of items) {
+                const name = escapeHtml(it.name ?? '');
+                const comment = escapeHtml(it.comment ?? '');
+                const date = formatDate(it.created_at);
+                const rating = stars(it.rating);
+
+                const card = document.createElement('div');
+                card.className = 'review-card';
+                card.innerHTML = `
+                    <div class="review-top">
+                        <div>
+                            <div class="review-name">${name}</div>
+                            <div class="review-stars" aria-label="${it.rating} stars">${rating}</div>
+                        </div>
+                        <div class="review-date">${escapeHtml(date)}</div>
+                    </div>
+                    <div class="review-text">${comment}</div>
+                `;
+                reviewsList.appendChild(card);
+            }
+        }
+
+        function formatSupabaseError(err) {
+            if (!err) return '';
+            const parts = [];
+            if (err.code) parts.push(`code: ${err.code}`);
+            if (err.message) parts.push(err.message);
+            if (err.hint) parts.push(`hint: ${err.hint}`);
+            if (err.details) parts.push(`details: ${err.details}`);
+            return parts.join(' | ');
+        }
+
+        // Helps catch copy/paste mistakes where the anon key is from a different Supabase project
+        // than the configured SUPABASE_URL.
+        function extractSupabaseRefFromUrl(url) {
+            try {
+                const u = new URL(url);
+                const host = u.hostname || '';
+                const m = host.match(/^([a-z0-9-]+)\.supabase\.co$/i);
+                return m ? m[1] : '';
+            } catch {
+                return '';
+            }
+        }
+
+        function extractSupabaseRefFromJwt(jwt) {
+            try {
+                const payload = jwt.split('.')[1];
+                if (!payload) return '';
+                const json = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+                return String(json.ref || '');
+            } catch {
+                return '';
+            }
+        }
+
+        async function loadSupabaseScript() {
+            return new Promise((resolve, reject) => {
+                const existing = document.querySelector('script[data-supabase]');
+                if (existing) return resolve();
+
+                const s = document.createElement('script');
+                s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+                s.async = true;
+                s.defer = true;
+                s.setAttribute('data-supabase', '1');
+                s.onload = () => resolve();
+                s.onerror = () => reject(new Error('Failed to load Supabase JS'));
+                document.head.appendChild(s);
+            });
+        }
+
+        async function initReviews() {
+            if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+                setReviewsNotice('Για να ενεργοποιηθούν οι on-site κριτικές, ρύθμισε το Supabase. Δες το REVIEWS_SETUP_SUPABASE.md και βάλε SUPABASE_URL / SUPABASE_ANON_KEY στο index.html.');
+                renderReviews([]);
+                if (reviewFormMsg) reviewFormMsg.textContent = 'Η αποστολή κριτικής δεν είναι ενεργή ακόμα (λείπει ρύθμιση Supabase).';
+                if (reviewSubmitBtn) reviewSubmitBtn.disabled = true;
+                return;
+            }
+
+            const urlRef = extractSupabaseRefFromUrl(SUPABASE_URL);
+            const keyRef = extractSupabaseRefFromJwt(SUPABASE_ANON_KEY);
+            if (urlRef && keyRef && urlRef !== keyRef) {
+                setReviewsNotice(`Λάθος ρύθμιση Supabase: το Project URL (${urlRef}) δεν ταιριάζει με το anon key (${keyRef}). Πάρε το σωστό anon key από Supabase → Settings → API.`);
+                renderReviews([]);
+                if (reviewFormMsg) reviewFormMsg.textContent = 'Η αποστολή κριτικής δεν είναι ενεργή (λάθος Supabase key).';
+                if (reviewSubmitBtn) reviewSubmitBtn.disabled = true;
+                return;
+            }
+
+            try {
+                await loadSupabaseScript();
+                const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+                const { data, error } = await client
+                    .from('reviews')
+                    .select('id, created_at, name, rating, comment')
+                    .order('created_at', { ascending: false })
+                    .limit(24);
+
+                if (error) {
+                    console.error('Supabase select error:', error);
+                    const errText = formatSupabaseError(error);
+                    const extraHelp = (error && String(error.message || '').toLowerCase().includes('invalid api key'))
+                        ? ' (GitHub Pages: έλεγξε ότι έχεις κάνει deploy τη νεότερη έκδοση και ξανα-αντέγραψε το anon public key από Supabase → Settings → API. Δες και Network → Request URL/Status.)'
+                        : '';
+                    setReviewsNotice(`Δεν ήταν δυνατή η φόρτωση κριτικών αυτή τη στιγμή. ${errText}${extraHelp}`);
+                    renderReviews([]);
+                } else {
+                    setReviewsNotice('');
+                    renderReviews(data);
+                }
+
+                if (reviewForm) {
+                    reviewForm.addEventListener('submit', async (e) => {
+                        e.preventDefault();
+
+                        if (reviewSubmitBtn) reviewSubmitBtn.disabled = true;
+                        if (reviewFormMsg) reviewFormMsg.textContent = '';
+
+                        const fd = new FormData(reviewForm);
+                        const website = String(fd.get('website') || '');
+                        if (website.trim().length > 0) {
+                            if (reviewFormMsg) reviewFormMsg.textContent = 'Το αίτημα απορρίφθηκε.';
+                            if (reviewSubmitBtn) reviewSubmitBtn.disabled = false;
+                            return;
+                        }
+
+                        const name = String(fd.get('name') || '').trim();
+                        const email = String(fd.get('email') || '').trim();
+                        const rating = Number(fd.get('rating') || 0);
+                        const comment = String(fd.get('comment') || '').trim();
+
+                        if (name.length < 2 || email.length < 5 || !email.includes('@') || rating < 1 || rating > 5 || comment.length < 5) {
+                            if (reviewFormMsg) reviewFormMsg.textContent = 'Έλεγξε τα πεδία και προσπάθησε ξανά.';
+                            if (reviewSubmitBtn) reviewSubmitBtn.disabled = false;
+                            return;
+                        }
+
+                        const { error: insertError } = await client
+                            .from('reviews')
+                            .insert([{ name, email, rating, comment }]);
+
+                        if (insertError) {
+                            console.error('Supabase insert error:', insertError);
+                            if (reviewFormMsg) reviewFormMsg.textContent = `Δεν έγινε η υποβολή. ${formatSupabaseError(insertError)}`;
+                            if (reviewSubmitBtn) reviewSubmitBtn.disabled = false;
+                            return;
+                        }
+
+                        if (reviewFormMsg) reviewFormMsg.textContent = 'Ευχαριστούμε! Η κριτική σου καταχωρήθηκε και θα εμφανιστεί μετά από έγκριση.';
+                        reviewForm.reset();
+                        if (reviewSubmitBtn) reviewSubmitBtn.disabled = false;
+                    });
+                }
+            } catch (err) {
+                console.error(err);
+                setReviewsNotice('Σφάλμα ρύθμισης κριτικών.');
+                renderReviews([]);
+                if (reviewSubmitBtn) reviewSubmitBtn.disabled = true;
+            }
+        }
+
+        window.addEventListener('load', () => {
+            try {
+                const urlRef = extractSupabaseRefFromUrl(SUPABASE_URL);
+                const keyRef = extractSupabaseRefFromJwt(SUPABASE_ANON_KEY);
+                const keyStart = String(SUPABASE_ANON_KEY || '').slice(0, 10);
+                const keyEnd = String(SUPABASE_ANON_KEY || '').slice(-10);
+                console.info('[Reviews] Supabase URL:', SUPABASE_URL);
+                console.info('[Reviews] Supabase ref (url/key):', urlRef || '(none)', '/', keyRef || '(none)');
+                console.info('[Reviews] Supabase anon key fingerprint:', `${keyStart}…${keyEnd}`);
+            } catch (e) {
+                console.warn('[Reviews] Supabase fingerprint error:', e);
+            }
+            initReviews();
+        });
     </script>
 </body>
 </html>
+
+
