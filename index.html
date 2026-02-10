@@ -352,6 +352,125 @@
         .price-row:last-child { border-bottom: none; }
         .price-row span:last-child { font-weight: 600; color: var(--text-main); }
 
+        /* --- Reviews (On-site) --- */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .reviews-panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .reviews-notice {
+            margin: 0 0 1rem;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .reviews-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .review-card {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1rem 1rem 1.1rem;
+            background: #ffffff;
+        }
+
+        .review-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: baseline;
+            margin-bottom: 0.35rem;
+            flex-wrap: wrap;
+        }
+
+        .review-name {
+            font-weight: 700;
+        }
+
+        .review-date {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .review-stars {
+            color: #f59e0b;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+
+        .review-text {
+            color: var(--text-main);
+            margin-top: 0.5rem;
+            white-space: pre-wrap;
+        }
+
+        .review-skeleton {
+            height: 88px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: linear-gradient(90deg, #f1f5f9 0%, #ffffff 50%, #f1f5f9 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .review-form {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .form-row {
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .form-row label {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .form-row input,
+        .form-row select,
+        .form-row textarea {
+            width: 100%;
+            padding: 0.85rem 0.9rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            outline: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #ffffff;
+        }
+
+        .form-row textarea { resize: vertical; }
+
+        .form-row input:focus,
+        .form-row select:focus,
+        .form-row textarea:focus {
+            border-color: rgba(37, 99, 235, 0.6);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
         /* --- Contact --- */
         .contact-wrapper {
             background: var(--bg-surface);
@@ -431,6 +550,8 @@
             .hero h1 { font-size: 2.25rem; }
             .about-grid { grid-template-columns: 1fr; }
             .hero-stats { flex-direction: column; gap: 1.5rem; }
+
+            .reviews-grid { grid-template-columns: 1fr; }
             
             .mobile-toggle { display: block; }
             .nav-menu {
@@ -459,6 +580,7 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#services" class="nav-link">Υπηρεσίες</a></li>
                 <li><a href="#pricing" class="nav-link">Κοστολόγηση</a></li>
+                <li><a href="#reviews" class="nav-link">Κριτικές</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="projects.html" class="nav-link">Δείγματα</a></li>
                 <li><a href="#contact" class="nav-link">Επικοινωνία</a></li>
@@ -669,6 +791,85 @@
         </div>
     </section>
 
+    <section class="section-padding" id="reviews" style="background: linear-gradient(to bottom, #ffffff, #f8fafc);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Κριτικές</h2>
+                <p style="color: var(--text-muted); max-width: 760px; margin: 0 auto;">
+                    Αφήστε την εμπειρία σας. Οι κριτικές εμφανίζονται στη σελίδα αφού εγκριθούν.
+                </p>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="reviews-panel">
+                    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom: 1rem;">
+                        <h3 style="font-size: 1.4rem;">Τι λένε οι πελάτες</h3>
+                        <span id="reviewsCount" style="color: var(--text-muted); font-size: 0.9rem;"></span>
+                    </div>
+
+                    <div id="reviewsNotice" class="reviews-notice" style="display:none;"></div>
+
+                    <div id="reviewsList" class="reviews-list" aria-label="Λίστα κριτικών">
+                        <div class="review-skeleton"></div>
+                        <div class="review-skeleton"></div>
+                        <div class="review-skeleton"></div>
+                    </div>
+                </div>
+
+                <div class="reviews-panel">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 0.75rem;">Αφήστε κριτική</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 1.25rem;">
+                        Συμπληρώστε τα στοιχεία σας. Η κριτική θα εμφανιστεί μετά από έγκριση.
+                    </p>
+
+                    <form id="reviewForm" class="review-form" novalidate>
+                        <div class="form-row">
+                            <label for="reviewName">Ονοματεπώνυμο</label>
+                            <input id="reviewName" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="reviewEmail">Email</label>
+                            <input id="reviewEmail" name="email" type="email" autocomplete="email" maxlength="120" required>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="reviewRating">Βαθμολογία</label>
+                            <select id="reviewRating" name="rating" required>
+                                <option value="">Επιλέξτε…</option>
+                                <option value="5">★★★★★ (5)</option>
+                                <option value="4">★★★★☆ (4)</option>
+                                <option value="3">★★★☆☆ (3)</option>
+                                <option value="2">★★☆☆☆ (2)</option>
+                                <option value="1">★☆☆☆☆ (1)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="reviewComment">Κείμενο</label>
+                            <textarea id="reviewComment" name="comment" rows="4" minlength="5" maxlength="800" required placeholder="Π.χ. άμεση εξυπηρέτηση, προσεγμένη δουλειά…"></textarea>
+                        </div>
+
+                        <!-- Honeypot (anti-spam) -->
+                        <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+                            <label for="reviewWebsite">Website</label>
+                            <input id="reviewWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="reviewSubmitBtn" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-paper-plane"></i> Υποβολή κριτικής
+                        </button>
+
+                        <p id="reviewFormMsg" style="margin-top: 0.9rem; font-size: 0.9rem; color: var(--text-muted);"></p>
+                        <p style="margin-top: 0.6rem; font-size: 0.85rem; color: var(--text-muted);">
+                            Δεν δημοσιεύουμε το email. Χρησιμοποιείται μόνο για έλεγχο/επικοινωνία.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section-padding" id="contact" style="background: linear-gradient(to bottom, #f8fafc, #e2e8f0);">
         <div class="container">
             <div class="contact-wrapper">
@@ -732,6 +933,10 @@
     </footer>
 
     <script>
+        // Supabase client (CDN)
+        // NOTE: This is loaded dynamically to keep the site build-free for GitHub Pages.
+        // You must set SUPABASE_URL and SUPABASE_ANON_KEY below.
+
         // Mobile Menu Toggle
         const toggleBtn = document.getElementById('mobileToggle');
         const navMenu = document.getElementById('navMenu');
@@ -810,6 +1015,182 @@
                 }, 900);
             });
         }
+
+        // --- Reviews (Supabase) ---
+        // Configure these (see REVIEWS_SETUP_SUPABASE.md):
+    const SUPABASE_URL = 'https://rtmdzkiturgwvjayozqr.supabase.co'; // e.g. https://xxxx.supabase.co
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0bWR6a2l0dXJnd3ZqYXlvenFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA3NjI0OTcsImV4cCI6MjA4NjMzODQ5N30.2KORZylbhFHf2Kz5VguZEJrJ7S5UD_bce4S07icz1xWc'; // anon public key
+
+        const reviewsNotice = document.getElementById('reviewsNotice');
+        const reviewsList = document.getElementById('reviewsList');
+        const reviewsCount = document.getElementById('reviewsCount');
+        const reviewForm = document.getElementById('reviewForm');
+        const reviewFormMsg = document.getElementById('reviewFormMsg');
+        const reviewSubmitBtn = document.getElementById('reviewSubmitBtn');
+
+        function setReviewsNotice(message) {
+            if (!reviewsNotice) return;
+            if (!message) {
+                reviewsNotice.style.display = 'none';
+                reviewsNotice.textContent = '';
+                return;
+            }
+            reviewsNotice.style.display = 'block';
+            reviewsNotice.textContent = message;
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#039;');
+        }
+
+        function stars(rating) {
+            const r = Math.max(1, Math.min(5, Number(rating) || 0));
+            return '★★★★★'.slice(0, r) + '☆☆☆☆☆'.slice(0, 5 - r);
+        }
+
+        function formatDate(iso) {
+            try {
+                const d = new Date(iso);
+                return d.toLocaleDateString('el-GR', { year: 'numeric', month: 'short', day: '2-digit' });
+            } catch {
+                return '';
+            }
+        }
+
+        function renderReviews(items) {
+            if (!reviewsList) return;
+            reviewsList.innerHTML = '';
+
+            if (!items || items.length === 0) {
+                reviewsList.innerHTML = '<div class="review-card" style="color: var(--text-muted);">Δεν υπάρχουν ακόμα κριτικές. Γίνετε ο/η πρώτος/η!</div>';
+                if (reviewsCount) reviewsCount.textContent = '';
+                return;
+            }
+
+            if (reviewsCount) reviewsCount.textContent = `${items.length} κριτικές`;
+
+            for (const it of items) {
+                const name = escapeHtml(it.name ?? '');
+                const comment = escapeHtml(it.comment ?? '');
+                const date = formatDate(it.created_at);
+                const rating = stars(it.rating);
+
+                const card = document.createElement('div');
+                card.className = 'review-card';
+                card.innerHTML = `
+                    <div class="review-top">
+                        <div>
+                            <div class="review-name">${name}</div>
+                            <div class="review-stars" aria-label="${it.rating} stars">${rating}</div>
+                        </div>
+                        <div class="review-date">${escapeHtml(date)}</div>
+                    </div>
+                    <div class="review-text">${comment}</div>
+                `;
+                reviewsList.appendChild(card);
+            }
+        }
+
+        async function loadSupabaseScript() {
+            return new Promise((resolve, reject) => {
+                const existing = document.querySelector('script[data-supabase]');
+                if (existing) return resolve();
+
+                const s = document.createElement('script');
+                s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+                s.async = true;
+                s.defer = true;
+                s.setAttribute('data-supabase', '1');
+                s.onload = () => resolve();
+                s.onerror = () => reject(new Error('Failed to load Supabase JS'));
+                document.head.appendChild(s);
+            });
+        }
+
+        async function initReviews() {
+            if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+                setReviewsNotice('Για να ενεργοποιηθούν οι on-site κριτικές, ρύθμισε το Supabase. Δες το REVIEWS_SETUP_SUPABASE.md και βάλε SUPABASE_URL / SUPABASE_ANON_KEY στο index.html.');
+                renderReviews([]);
+                if (reviewFormMsg) reviewFormMsg.textContent = 'Η αποστολή κριτικής δεν είναι ενεργή ακόμα (λείπει ρύθμιση Supabase).';
+                if (reviewSubmitBtn) reviewSubmitBtn.disabled = true;
+                return;
+            }
+
+            try {
+                await loadSupabaseScript();
+                const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+                const { data, error } = await client
+                    .from('reviews')
+                    .select('id, created_at, name, rating, comment')
+                    .order('created_at', { ascending: false })
+                    .limit(24);
+
+                if (error) {
+                    setReviewsNotice('Δεν ήταν δυνατή η φόρτωση κριτικών αυτή τη στιγμή.');
+                    renderReviews([]);
+                } else {
+                    setReviewsNotice('');
+                    renderReviews(data);
+                }
+
+                if (reviewForm) {
+                    reviewForm.addEventListener('submit', async (e) => {
+                        e.preventDefault();
+
+                        if (reviewSubmitBtn) reviewSubmitBtn.disabled = true;
+                        if (reviewFormMsg) reviewFormMsg.textContent = '';
+
+                        const fd = new FormData(reviewForm);
+                        const website = String(fd.get('website') || '');
+                        if (website.trim().length > 0) {
+                            if (reviewFormMsg) reviewFormMsg.textContent = 'Το αίτημα απορρίφθηκε.';
+                            if (reviewSubmitBtn) reviewSubmitBtn.disabled = false;
+                            return;
+                        }
+
+                        const name = String(fd.get('name') || '').trim();
+                        const email = String(fd.get('email') || '').trim();
+                        const rating = Number(fd.get('rating') || 0);
+                        const comment = String(fd.get('comment') || '').trim();
+
+                        if (name.length < 2 || email.length < 5 || !email.includes('@') || rating < 1 || rating > 5 || comment.length < 5) {
+                            if (reviewFormMsg) reviewFormMsg.textContent = 'Έλεγξε τα πεδία και προσπάθησε ξανά.';
+                            if (reviewSubmitBtn) reviewSubmitBtn.disabled = false;
+                            return;
+                        }
+
+                        const { error: insertError } = await client
+                            .from('reviews')
+                            .insert([{ name, email, rating, comment }]);
+
+                        if (insertError) {
+                            if (reviewFormMsg) reviewFormMsg.textContent = 'Δεν έγινε η υποβολή. Δοκίμασε ξανά σε λίγο.';
+                            if (reviewSubmitBtn) reviewSubmitBtn.disabled = false;
+                            return;
+                        }
+
+                        if (reviewFormMsg) reviewFormMsg.textContent = 'Ευχαριστούμε! Η κριτική σου καταχωρήθηκε και θα εμφανιστεί μετά από έγκριση.';
+                        reviewForm.reset();
+                        if (reviewSubmitBtn) reviewSubmitBtn.disabled = false;
+                    });
+                }
+            } catch (err) {
+                console.error(err);
+                setReviewsNotice('Σφάλμα ρύθμισης κριτικών.');
+                renderReviews([]);
+                if (reviewSubmitBtn) reviewSubmitBtn.disabled = true;
+            }
+        }
+
+        window.addEventListener('load', () => {
+            initReviews();
+        });
     </script>
 </body>
 </html>
