@@ -44,7 +44,7 @@
             --radius: 16px;
         }
 
-        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--scroll-offset, 80px); }
         
         body {
             font-family: 'Inter', sans-serif;
@@ -270,7 +270,7 @@
         .card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
         .card p { color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
 
-        .feature-list { list-style: none; }
+        .feature-list { list-style: none; padding-left: 0; }
         .feature-list li {
             display: flex;
             align-items: flex-start;
@@ -280,6 +280,10 @@
             font-size: 0.95rem;
         }
         .feature-list i { color: var(--primary); margin-top: 4px; }
+
+        /* Feature list on dark sections (e.g. About) */
+        .about-section .feature-list li { color: rgba(255, 255, 255, 0.92); }
+        .about-section .feature-list i { color: var(--accent); }
 
         /* --- About Section (Rebranded) --- */
         .about-section { background: var(--text-main); color: white; position: relative; overflow: hidden; }
@@ -690,19 +694,30 @@
                 </div>
                 <h2>Μηχανική Προσέγγιση,<br>Όχι απλά "Service"</h2>
                 <p>
-                    Είμαι φοιτητής <span class="highlight">Ηλεκτρολόγων Μηχανικών & Μηχανικών Υπολογιστών στο ΕΜΠ</span> και προσφέρω υπηρεσίες που συνδυάζουν
-                    <strong>τεχνική ακρίβεια</strong>, <strong>μεθοδικότητα</strong> και <strong>σεβασμό στον χρόνο και το budget</strong>.
+                    Είμαι φοιτητής στους <span class="highlight">Ηλεκτρολόγους Μηχανικούς & Μηχανικούς Υπολογιστών του ΕΜΠ</span>, με πολυετή εμπειρία στις κατασκευές,
+                    στις γλώσσες προγραμματισμού και στο hardware.
                 </p>
+
                 <p>
-                    Στο MinasTech δεν κάνω απλά "γρήγορες λύσεις". Βλέπω κάθε εργασία σαν mini project: ανάλυση προβλήματος, σωστό πλάνο, καθαρή υλοποίηση και έλεγχος.
-                    Είτε μιλάμε για ένα gaming PC, είτε για επισκευή laptop, είτε για 3D printing, ο στόχος είναι ένα: <strong>αξιόπιστο αποτέλεσμα που κρατάει</strong>.
+                    Ασχολούμαι με τις κατασκευές από την προσχολική ηλικία. Στη συνέχεια εκπαιδεύτηκα σε
+                    <strong>Scratch</strong>, <strong>Python (advanced)</strong> και <strong>Arduino (C++)</strong>, όπου και έλαβα τις αντίστοιχες πιστοποιήσεις.
                 </p>
-                <ul class="feature-list" style="margin-top: 1.25rem;">
-                    <li><i class="fas fa-check"></i> Διάγνωση & troubleshooting με τεκμηρίωση</li>
-                    <li><i class="fas fa-check"></i> Καθαρή συναρμολόγηση / cable management</li>
-                    <li><i class="fas fa-check"></i> Θερμική συμπεριφορά (temps / airflow) και βελτιστοποίηση</li>
-                    <li><i class="fas fa-check"></i> 3D modeling & προετοιμασία για εκτύπωση (STL/STEP)</li>
+
+                <p style="margin-bottom: 1rem;">
+                    Από το 2019 και μετά έχω λάβει διακρίσεις σε Πανελλήνιους Διαγωνισμούς Ρομποτικής, όπως:
+                </p>
+                <ul class="feature-list" style="margin-top: 0;">
+                    <li><i class="fas fa-award"></i> 2η θέση στον διαγωνισμό Δημιουργικής Κατασκευής «Εμπνέομαι, δημιουργώ, καινοτομώ» (Μουσείο Επιστημών & Τεχνολογίας, Παν. Πατρών) με την κατασκευή «Ηλιακή Παστερίωση».</li>
+                    <li><i class="fas fa-award"></i> Διάκριση «Προϊόντος/Υπηρεσίας» (Ακαδημία Μηχανικής PIERCE) για την υλοποίηση στη Μαθητική Επιχείρηση «Endless Energy Tree».</li>
+                    <li><i class="fas fa-award"></i> 2023: Συμμετοχή με διάκριση στο MIT Campus στο πρόγραμμα <strong>AI & Machine Learning Academy (NVIDIA‑iD Academies)</strong>, με αντίστοιχη πιστοποίηση και εμβάθυνση στη ρομποτική.</li>
+                    <li><i class="fas fa-award"></i> 2024: Συμμετοχή σε intensive summer research training experience στο <strong>Advanced Neurotechnologies Youth Education Project</strong> (USC).</li>
                 </ul>
+
+                <p style="margin-top: 1.25rem;">
+                    Είμαι μέλος της ομάδας <strong>PROM Racing NAVIOS Formula Student</strong>, στη υποομάδα <strong>Driverless</strong>.
+                    Στο MinasTech αντιμετωπίζω κάθε εργασία σαν mini project: ανάλυση προβλήματος, σωστό πλάνο, καθαρή υλοποίηση και έλεγχος — με στόχο ένα
+                    <strong>αξιόπιστο αποτέλεσμα που κρατάει</strong>.
+                </p>
                 <div class="about-badges">
                     <span class="tech-tag">CAD Design</span>
                     <span class="tech-tag">Hardware Engineering</span>
@@ -982,6 +997,101 @@
                 nav.style.background = "rgba(255, 255, 255, 0.8)";
             }
         });
+
+        // --- Scrollspy: highlight current section in nav (in the order requested) ---
+        (function initScrollSpy() {
+            const links = Array.from(document.querySelectorAll('.nav-link'));
+            const orderedIds = ['services', 'pricing', 'reviews', 'about'];
+
+            const setActive = (id) => {
+                links.forEach(l => l.classList.remove('active'));
+                if (!id) return;
+                const active = links.find(l => l.getAttribute('href') === `#${id}`);
+                if (active) active.classList.add('active');
+            };
+
+            const nav = document.querySelector('nav');
+            const getOffset = () => (nav ? Math.ceil(nav.getBoundingClientRect().height) + 24 : 104);
+
+            const onScroll = () => {
+                const offset = getOffset();
+                const y = window.scrollY + offset;
+
+                let current = '';
+                for (const id of orderedIds) {
+                    const el = document.getElementById(id);
+                    if (!el) continue;
+                    if (y >= el.offsetTop) current = id;
+                }
+
+                // If we're near the bottom, treat it as the last section before footer
+                if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 2)) {
+                    current = 'about';
+                }
+
+                setActive(current);
+            };
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('load', onScroll);
+            window.addEventListener('resize', onScroll);
+        })();
+
+        // --- Anchor scroll fix (accounts for fixed nav height) ---
+        // Why: On some screens/browsers, CSS scroll-padding-top isn't enough and sections land "off".
+        // This makes all in-page anchor navigation land exactly below the navbar.
+        (function initAnchorScrollOffset() {
+            const nav = document.querySelector('nav');
+            if (!nav) return;
+
+            const setOffset = () => {
+                const navHeight = Math.ceil(nav.getBoundingClientRect().height);
+                document.documentElement.style.setProperty('--scroll-offset', `${navHeight + 12}px`);
+            };
+            setOffset();
+            window.addEventListener('resize', setOffset);
+
+            const smoothScrollToHash = (hash) => {
+                if (!hash || hash === '#') return;
+                const target = document.querySelector(hash);
+                if (!target) return;
+
+                // Close mobile menu if open
+                navMenu.classList.remove('active');
+                const icon = toggleBtn?.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+
+                const navHeight = Math.ceil(nav.getBoundingClientRect().height) + 12;
+                const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            };
+
+            // Intercept clicks on in-page anchors
+            document.addEventListener('click', (e) => {
+                const a = e.target?.closest?.('a[href^="#"]');
+                if (!a) return;
+                const hash = a.getAttribute('href');
+                if (!hash || hash === '#') return;
+                if (!document.querySelector(hash)) return;
+                e.preventDefault();
+                history.pushState(null, '', hash);
+                smoothScrollToHash(hash);
+            });
+
+            // Handle direct loads with hash
+            window.addEventListener('load', () => {
+                if (location.hash) {
+                    // Let layout settle first (fonts, images)
+                    window.setTimeout(() => smoothScrollToHash(location.hash), 60);
+                }
+            });
+
+            // Handle back/forward hash navigation
+            window.addEventListener('hashchange', () => smoothScrollToHash(location.hash));
+        })();
 
         // Viber deep-link with safe fallback
         // Behavior:
