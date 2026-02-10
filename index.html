@@ -1106,6 +1106,30 @@
             return parts.join(' | ');
         }
 
+        // Helps catch copy/paste mistakes where the anon key is from a different Supabase project
+        // than the configured SUPABASE_URL.
+        function extractSupabaseRefFromUrl(url) {
+            try {
+                const u = new URL(url);
+                const host = u.hostname || '';
+                const m = host.match(/^([a-z0-9-]+)\.supabase\.co$/i);
+                return m ? m[1] : '';
+            } catch {
+                return '';
+            }
+        }
+
+        function extractSupabaseRefFromJwt(jwt) {
+            try {
+                const payload = jwt.split('.')[1];
+                if (!payload) return '';
+                const json = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+                return String(json.ref || '');
+            } catch {
+                return '';
+            }
+        }
+
         async function loadSupabaseScript() {
             return new Promise((resolve, reject) => {
                 const existing = document.querySelector('script[data-supabase]');
@@ -1131,6 +1155,16 @@
                 return;
             }
 
+            const urlRef = extractSupabaseRefFromUrl(SUPABASE_URL);
+            const keyRef = extractSupabaseRefFromJwt(SUPABASE_ANON_KEY);
+            if (urlRef && keyRef && urlRef !== keyRef) {
+                setReviewsNotice(`Λάθος ρύθμιση Supabase: το Project URL (${urlRef}) δεν ταιριάζει με το anon key (${keyRef}). Πάρε το σωστό anon key από Supabase → Settings → API.`);
+                renderReviews([]);
+                if (reviewFormMsg) reviewFormMsg.textContent = 'Η αποστολή κριτικής δεν είναι ενεργή (λάθος Supabase key).';
+                if (reviewSubmitBtn) reviewSubmitBtn.disabled = true;
+                return;
+            }
+
             try {
                 await loadSupabaseScript();
                 const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -1143,7 +1177,11 @@
 
                 if (error) {
                     console.error('Supabase select error:', error);
-                    setReviewsNotice(`Δεν ήταν δυνατή η φόρτωση κριτικών αυτή τη στιγμή. ${formatSupabaseError(error)}`);
+                    const errText = formatSupabaseError(error);
+                    const extraHelp = (error && String(error.message || '').toLowerCase().includes('invalid api key'))
+                        ? ' (GitHub Pages: έλεγξε ότι έχεις κάνει deploy τη νεότερη έκδοση και ξανα-αντέγραψε το anon public key από Supabase → Settings → API. Δες και Network → Request URL/Status.)'
+                        : '';
+                    setReviewsNotice(`Δεν ήταν δυνατή η φόρτωση κριτικών αυτή τη στιγμή. ${errText}${extraHelp}`);
                     renderReviews([]);
                 } else {
                     setReviewsNotice('');
@@ -1201,6 +1239,17 @@
         }
 
         window.addEventListener('load', () => {
+            try {
+                const urlRef = extractSupabaseRefFromUrl(SUPABASE_URL);
+                const keyRef = extractSupabaseRefFromJwt(SUPABASE_ANON_KEY);
+                const keyStart = String(SUPABASE_ANON_KEY || '').slice(0, 10);
+                const keyEnd = String(SUPABASE_ANON_KEY || '').slice(-10);
+                console.info('[Reviews] Supabase URL:', SUPABASE_URL);
+                console.info('[Reviews] Supabase ref (url/key):', urlRef || '(none)', '/', keyRef || '(none)');
+                console.info('[Reviews] Supabase anon key fingerprint:', `${keyStart}…${keyEnd}`);
+            } catch (e) {
+                console.warn('[Reviews] Supabase fingerprint error:', e);
+            }
             initReviews();
         });
     </script>
