@@ -202,10 +202,11 @@
             box-shadow: var(--shadow-md);
             transform: translateY(-2px);
         }
+
         .project-card img {
             width: 100%;
-            aspect-ratio: 1 / 1;   /* forces square */
-            object-fit: cover;     /* fills square without distortion */
+            height: 260px;
+            object-fit: cover;
             display: block;
             background: #e2e8f0;
         }
@@ -221,6 +222,46 @@
         .project-card figcaption span {
             color: var(--text-muted);
             font-size: 0.9rem;
+        }
+
+        /* Graceful placeholder when an image is missing */
+        .img-placeholder {
+            height: 260px;
+            background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(6,182,212,0.10));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .img-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(15,23,42,0.06) 1px, transparent 1px);
+            background-size: 22px 22px;
+            opacity: 0.9;
+        }
+
+        .img-placeholder .inner {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            place-items: center;
+            gap: 0.35rem;
+            text-align: center;
+            padding: 1.25rem;
+        }
+
+        .img-placeholder i {
+            font-size: 1.9rem;
+            color: var(--primary);
+        }
+
+        .img-placeholder small {
+            font-size: 0.85rem;
         }
 
         .hint {
@@ -268,15 +309,16 @@
 
     <nav>
         <div class="container nav-inner">
-            <a href="index.html" class="logo">
+            <a href="#" class="logo">
                 <i class="fas fa-layer-group"></i> MinasTech
             </a>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html#services" class="nav-link">Υπηρεσίες</a></li>
-                <li><a href="index.html#pricing" class="nav-link">Κοστολόγηση</a></li>
-                <li><a href="index.html#about" class="nav-link">About</a></li>
-                <li><a href="index.html#contact" class="nav-link">Επικοινωνία</a></li>
-                <li><a href="projects.html" class="btn"><i class="fas fa-folder-open"></i> Δείγματα</a></li>
+                <li><a href="#services" class="nav-link">Υπηρεσίες</a></li>
+                <li><a href="#pricing" class="nav-link">Κοστολόγηση</a></li>
+                <li><a href="#reviews" class="nav-link">Κριτικές</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Επικοινωνία</a></li>
+                <li><a href="projects.html" class="nav-link">Δείγματα</a></li>
             </ul>
             <div class="mobile-toggle" id="mobileToggle">
                 <i class="fas fa-bars"></i>
@@ -290,57 +332,19 @@
             <h1>Δείγματα <span class="text-gradient">Δουλειάς</span></h1>
             <p>
                 Φωτογραφίες από builds, επισκευές, 3D εκτυπώσεις και laser εργασίες.
+                Για να εμφανιστούν εδώ, πρόσθεσε εικόνες στον φάκελο <strong>photos</strong>.
             </p>
         </div>
     </header>
 
     <main class="section-padding" aria-label="Portfolio projects">
         <div class="container">
-            <div class="projects-grid">
-                <figure class="project-card">
-                    <img src="photos/IMG_3541.jpeg" alt="Δείγμα έργου 1" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                </figure>
+            <div class="projects-grid" id="projectsGrid" aria-live="polite"></div>
 
-                <figure class="project-card">
-                    <img src="photos/sample-2.jpeg" alt="Δείγμα έργου 2" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                </figure>
-
-                <figure class="project-card">
-                    <img src="photos/IMG_7479.jpeg" alt="Δείγμα έργου 3" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                </figure>
-
-                <figure class="project-card">
-                    <img src="photos/sample-4.jpeg" alt="Δείγμα έργου 4" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                </figure>
-                
-                <figure class="project-card">
-                    <img src="photos/IMG_7527.jpeg" alt="Δείγμα έργου 4" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                </figure>
-                
-                <figure class="project-card">
-                    <img src="photos/image.png" alt="Δείγμα έργου 4" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                </figure>
-
-                <figure class="project-card">
-                    <img src="photos/sample-7.jpeg" alt="Δείγμα έργου 4" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                </figure>
-
-                <figure class="project-card">
-                    <img src="photos/image2.png" alt="Δείγμα έργου 4" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                </figure>
-                
-                <figure class="project-card">
-                    <img src="photos/image3.png" alt="Δείγμα έργου 4" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                </figure>
-                
-                <figure class="project-card">
-                    <img src="photos/image1.png" alt="Δείγμα έργου 4" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                </figure>
-                
-                <figure class="project-card">
-                    <img src="photos/IMG_7754.jpeg" alt="Δείγμα έργου 4" loading="lazy" onerror="this.closest('figure').style.display='none'">
-                </figure>
-            </div>
+            <p class="hint">
+                Tip: Πρόσθεσε εικόνες στον φάκελο <code>photos</code> σαν <code>sample-1.jpg</code>, <code>sample-2.jpg</code> κ.ο.κ.
+                (ή άλλα ονόματα) και θα εμφανιστούν αυτόματα.
+            </p>
         </div>
     </main>
 
@@ -390,10 +394,132 @@
                 nav.style.background = "rgba(255, 255, 255, 0.8)";
             }
         });
+
+        // --- Portfolio gallery ---
+        // Renders a small curated set by default, but also supports auto-expanding sample-N files.
+        const projectsGrid = document.getElementById('projectsGrid');
+
+        const defaultItems = [
+            { src: 'photos/sample-1.jpg', title: 'PC Build', subtitle: 'Συναρμολόγηση & cable management', icon: 'fa-desktop' },
+            { src: 'photos/sample-2.jpg', title: '3D Printed Part', subtitle: 'Λειτουργικό εξάρτημα / prototype', icon: 'fa-cube' },
+            { src: 'photos/sample-3.jpg', title: 'Laser Engraving', subtitle: 'Χάραξη ή κοπή σε υλικό', icon: 'fa-pen-fancy' },
+            { src: 'photos/sample-4.jpg', title: 'Laptop Upgrade', subtitle: 'RAM/SSD + καθαρισμός', icon: 'fa-laptop' },
+        ];
+
+        function createPlaceholder(icon, title, subtitle) {
+            const wrap = document.createElement('div');
+            wrap.className = 'img-placeholder';
+            wrap.innerHTML = `
+                <div class="inner">
+                    <i class="fas ${icon}"></i>
+                    <div style="font-weight:700; color: var(--text-main);">${title}</div>
+                    <small>${subtitle}</small>
+                </div>
+            `;
+            return wrap;
+        }
+
+        function createCard(item) {
+            const fig = document.createElement('figure');
+            fig.className = 'project-card';
+
+            const img = document.createElement('img');
+            img.src = item.src;
+            img.alt = item.alt || item.title;
+            img.loading = 'lazy';
+
+            const placeholder = createPlaceholder(item.icon || 'fa-image', item.title, item.subtitle || '');
+
+            img.addEventListener('error', () => {
+                // If the image doesn't exist, keep the card but show a clean placeholder.
+                img.replaceWith(placeholder);
+            }, { once: true });
+
+            const cap = document.createElement('figcaption');
+            cap.innerHTML = `
+                <strong>${item.title}</strong>
+                <span>${item.subtitle || ''}</span>
+            `;
+
+            fig.appendChild(img);
+            fig.appendChild(cap);
+            return fig;
+        }
+
+        async function loadImage(src) {
+            // Try a HEAD request first; if it's blocked (some hosts), fall back to Image().
+            try {
+                const res = await fetch(src, { method: 'HEAD', cache: 'no-store' });
+                return res.ok;
+            } catch {
+                return await new Promise((resolve) => {
+                    const t = new Image();
+                    t.onload = () => resolve(true);
+                    t.onerror = () => resolve(false);
+                    t.src = src;
+                });
+            }
+        }
+
+        async function tryAppendIfExists(item) {
+            const ok = await loadImage(item.src);
+            if (!ok) return false;
+            projectsGrid.appendChild(createCard(item));
+            return true;
+        }
+
+        async function renderPortfolio() {
+            if (!projectsGrid) return;
+            projectsGrid.innerHTML = '';
+
+            // Always render the curated defaults (with placeholders when missing)
+            defaultItems.forEach(it => projectsGrid.appendChild(createCard(it)));
+
+            // Auto-expand extra samples if they exist (sample-5.jpg ... sample-24.jpg)
+            for (let i = 5; i <= 24; i++) {
+                const src = `photos/sample-${i}.jpg`;
+                const ok = await loadImage(src);
+                if (!ok) break;
+                projectsGrid.appendChild(createCard({
+                    src,
+                    title: `Έργο #${i}`,
+                    subtitle: 'Δείγμα δουλειάς',
+                    icon: 'fa-folder-open'
+                }));
+            }
+
+            // Also try common filenames (so you don't have to rename photos).
+            // We can't list directories on GitHub Pages, so we probe a reasonable set.
+            const candidates = [
+                'photos/IMG_3541.jpeg',
+                'photos/IMG_7479.jpeg',
+                'photos/IMG_7527.jpeg',
+                'photos/IMG_7754.jpeg',
+                'photos/sample-2.jpeg',
+                'photos/sample-4.jpeg',
+                'photos/sample-7.jpeg',
+                'photos/image.png',
+                'photos/image1.png',
+                'photos/image2.png',
+                'photos/image3.png'
+            ];
+
+            const existing = new Set(
+                Array.from(projectsGrid.querySelectorAll('img')).map(img => img.getAttribute('src'))
+            );
+
+            for (const src of candidates) {
+                if (existing.has(src)) continue;
+                await tryAppendIfExists({
+                    src,
+                    title: 'Φωτογραφία έργου',
+                    subtitle: '',
+                    icon: 'fa-image'
+                });
+            }
+        }
+
+        window.addEventListener('load', renderPortfolio);
     </script>
 </body>
 </html>
-
-
-
-
